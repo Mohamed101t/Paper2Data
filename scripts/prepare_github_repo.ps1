@@ -1,9 +1,9 @@
-$ErrorActionPreference = "Stop"
+﻿$ErrorActionPreference = "Stop"
 
 $project = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 Set-Location $project
 
-Write-Host "=== Paper2Data GitHub Repository Preparation ===" -ForegroundColor Cyan
+Write-Host "=== Paper2Data GitHub Repository Preparation V7.1 ===" -ForegroundColor Cyan
 
 Write-Host "Removing generated caches/build output (source files and databases are not deleted)..." -ForegroundColor Cyan
 
@@ -43,17 +43,28 @@ if (-not (Test-Path (Join-Path $project ".git"))) {
     Write-Host "Initialized Git repository." -ForegroundColor Green
 }
 
-Write-Host "Running repository health check..." -ForegroundColor Cyan
-$pythonCommand = Get-Command python -ErrorAction SilentlyContinue
-if ($pythonCommand) {
-    & $pythonCommand.Source scripts\repository_health_check.py
+Write-Host "Resolving project Python..." -ForegroundColor Cyan
+
+$preferredPython = Join-Path $HOME ".conda\envs\data_analysis\python.exe"
+$pythonExe = $null
+
+if (Test-Path $preferredPython) {
+    $pythonExe = $preferredPython
 } else {
-    $preferredPython = Join-Path $HOME ".conda\envs\data_analysis\python.exe"
-    if (-not (Test-Path $preferredPython)) {
-        throw "Python was not found. Run scripts\repository_health_check.py with your project Python manually."
+    $pythonCommand = Get-Command python -ErrorAction SilentlyContinue
+    if ($pythonCommand -and $pythonCommand.Source -and (Test-Path $pythonCommand.Source)) {
+        $pythonExe = $pythonCommand.Source
     }
-    & $preferredPython scripts\repository_health_check.py
 }
+
+if (-not $pythonExe) {
+    throw "A usable Python executable was not found. Expected: $preferredPython"
+}
+
+Write-Host "Using Python: $pythonExe" -ForegroundColor Green
+
+Write-Host "Running repository health check..." -ForegroundColor Cyan
+& $pythonExe scripts\repository_health_check.py
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 Write-Host "`nFiles Git would add:" -ForegroundColor Cyan
