@@ -1,0 +1,51 @@
+name: Bug report
+description: Report a reproducible Paper2Data problem
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please use synthetic data and remove personal information from screenshots/logs.
+  - type: input
+    id: version
+    attributes:
+      label: Paper2Data version
+      placeholder: v1.0.0-rc.1
+    validations:
+      required: true
+  - type: dropdown
+    id: run_mode
+    attributes:
+      label: How are you running Paper2Data?
+      options:
+        - Python source
+        - Windows packaged build
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include the smallest reproducible sequence.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include an error message or traceback if available. Remove local usernames and private data.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: Windows version, Python version, display scaling, interface language

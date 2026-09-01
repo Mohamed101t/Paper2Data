@@ -1,0 +1,40 @@
+name: Feature request
+description: Suggest an improvement that fits Paper2Data's product scope
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: What data-entry problem would this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Proposed workflow
+      description: Describe the simplest user experience you would expect.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Project setup
+        - Field builder
+        - Data entry
+        - Records/review
+        - Export/import
+        - Localization/accessibility
+        - Performance
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: MVP scope check
+      options:
+        - label: I understand OCR, cloud sync, and AI extraction are intentionally outside the current MVP.

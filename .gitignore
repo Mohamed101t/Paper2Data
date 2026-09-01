@@ -1,0 +1,81 @@
+# Python bytecode / caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.conda/
+
+# IDE / OS
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Secrets / local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.pfx
+*.p12
+*.key
+*.crt
+*.cer
+
+# Paper2Data local user data
+paper2data_local.db
+paper2data_local.db-*
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# User exports / temporary outputs
+exports/
+output/
+outputs/
+*.xlsx
+*.csv
+~$*.xlsx
+
+# PyInstaller / release outputs
+build/
+dist/
+release_output/
+*.spec.bak
+*.zip
+*.sha256.txt
+
+# Generated Qt translation binaries (source .ts files are tracked)
+presentation/translations/*.qm
+
+# Local patch / migration notes from development history
+PATCH_MANIFEST*.txt
+README_FIELD_SYSTEM_V3.md
+README_LOCALIZATION_FIX.md
+README_UIUX_V4.md
+README_V5_1_FIX.md
+README_RELEASE_V6.md
+README_RELEASE_V6_1_FIX.md
+
+# Test/runtime leftovers
+*.log
+*.tmp
+*.temp
+
+# Local planning documents
+Planning_and_organization.docx
