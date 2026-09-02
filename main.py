@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import sys
-import tempfile
 from pathlib import Path
 
 from PySide6.QtGui import QIcon
@@ -55,14 +54,24 @@ def _configure_application(app: QApplication) -> None:
 
 
 def _run_smoke_test(app: QApplication) -> int:
-    """Initialize the frozen application against a temporary database and exit."""
-    with tempfile.TemporaryDirectory(prefix="paper2data_smoke_") as temp_dir:
-        db_service = DatabaseService(Path(temp_dir) / "smoke.db")
-        main_window = _create_main_window(app, db_service)
-        main_window.show()
-        app.processEvents()
-        main_window.close()
-        app.processEvents()
+    """Initialize the packaged app inside the release script's isolated data dir.
+
+    The PowerShell smoke-test runner sets PAPER2DATA_DATA_DIR to a disposable
+    directory and removes that directory only after this process has exited.
+    Keeping cleanup outside this process avoids Windows file-lock races with
+    SQLite/Qt during interpreter shutdown.
+    """
+    smoke_db_path = RuntimePaths.data_dir() / "smoke.db"
+    db_service = DatabaseService(smoke_db_path)
+
+    main_window = _create_main_window(app, db_service)
+    main_window.show()
+    app.processEvents()
+
+    main_window.close()
+    main_window.deleteLater()
+    app.processEvents()
+
     return 0
 
 
