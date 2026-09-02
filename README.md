@@ -11,6 +11,16 @@ Paper2Data is an offline-first Windows desktop application designed for research
 ![SQLite](https://img.shields.io/badge/Storage-SQLite-003B57?logo=sqlite&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
+## Screenshots
+
+| Projects Dashboard | Form Builder |
+| --- | --- |
+| ![Paper2Data Projects Dashboard](docs/screenshots/dashboard.png) | ![Paper2Data Form Builder](docs/screenshots/form-builder.png) |
+
+| Data Entry | Records & Export |
+| --- | --- |
+| ![Paper2Data Data Entry](docs/screenshots/data-entry.png) | ![Paper2Data Records and Export](docs/screenshots/records-export.png) |
+
 ## Why Paper2Data?
 
 Entering hundreds of paper questionnaires directly into Excel can be slow and error-prone, especially for users who are not comfortable with spreadsheets. Paper2Data replaces the raw grid with a purpose-built form-entry workflow:
@@ -186,7 +196,7 @@ Please report suspected vulnerabilities privately. See [SECURITY.md](SECURITY.md
 
 ## Repository status
 
-Paper2Data is currently at the **v1.0.0 release-candidate stage**. Source quality gates are green; public binary release should wait for final smoke testing and publisher signing/reputation requirements appropriate to the distribution channel.
+Paper2Data is currently at the **v1.0.0 release-candidate stage**. The complete automated quality gate passes with **124 tests**, and the packaged Windows executable has passed local smoke testing. Public binary distribution is intentionally deferred until an appropriate code-signing process is in place.
 
 ## Roadmap
 
